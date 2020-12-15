@@ -44,7 +44,7 @@ jspm_packages
 dist/
 
 # Various others
-/lib
+# /lib
 /tmp
 
 # JetBrains IDEs
