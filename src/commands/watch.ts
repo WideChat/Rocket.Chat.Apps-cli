@@ -49,7 +49,6 @@ export default class Watch extends Command {
 
         try {
             await fd.readInfoFile();
-            await fd.matchAppsEngineVersion();
         } catch (e) {
             this.error(chalk.bold.red(e && e.message ? e.message : e), {exit: 2});
         }
