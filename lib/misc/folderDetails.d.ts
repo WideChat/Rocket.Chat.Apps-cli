@@ -22,9 +22,11 @@ export declare class FolderDetails {
      * Throws an error when something isn't right.
      */
     readInfoFile(): Promise<void>;
+    matchAppsEngineVersion(): Promise<void>;
     private validateAppDotJson;
     private isValidResult;
     private reportFailed;
     private reportError;
     private reportMissing;
+    private updateInfoFileRequiredVersion;
 }
