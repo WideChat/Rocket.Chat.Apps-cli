@@ -102,6 +102,10 @@ export class FolderDetails {
     }
 
     public async matchAppsEngineVersion(): Promise<void> {
+        // WIDECHAT
+        // as we are using git url as dependency in package.json, it always throughs error
+        return;
+
         if (!this.info) {
             throw new Error('App Manifest not loaded. Exiting...');
         }
