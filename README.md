@@ -1,6 +1,9 @@
 # Rocket.Chat Apps CLI
 The Rocket.Chat Apps CLI for interacting with Apps.
 
+## Installation
+npm install -g WideChat/Rocket.Chat.Apps-cli
+
 ## Getting Started
 Extremely simple.
 
