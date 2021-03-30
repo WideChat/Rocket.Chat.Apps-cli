@@ -1,4 +1,6 @@
 import Command from '@oclif/command';
+import chalk from 'chalk';
+import cli from 'cli-ux';
 import * as FormData from 'form-data';
 import * as fs from 'fs';
 import fetch from 'node-fetch';
@@ -105,6 +107,11 @@ export const packageAndZip = async (command: Command, fd: FolderDetails): Promis
 export const uploadApp = async (flags: { [key: string]: any }, fd: FolderDetails, zipname: string) => {
         const data = new FormData();
         data.append('app', fs.createReadStream(fd.mergeWithFolder(zipname)));
+
+        if (fd.info.permissions) {
+            data.append('permissions', JSON.stringify(fd.info.permissions));
+        }
+
         try {
             await asyncSubmitData(data, flags, fd);
         } catch (e) {
@@ -200,6 +207,11 @@ export const asyncSubmitData = async (data: FormData, flags: { [key: string]: an
             }
 
             authResult = { data: { authToken: flags.token, userId: flags.userId } };
+        }
+
+        if (await checkUpload(flags, fd)) {
+            cli.log(chalk.bold.greenBright('   App already exists - updating it.'));
+            flags.update = true;
         }
 
         let endpoint = '/api/apps';
